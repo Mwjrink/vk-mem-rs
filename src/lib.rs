@@ -306,6 +306,8 @@ bitflags! {
 
 bitflags! {
     pub struct DefragmentationFlags: u32 {
+        const NONE = 0x0000_0000;
+
         /// Use simple but fast algorithm for defragmentation.
         /// May not achieve best results but will require least time to compute and least allocations to copy.
         const ALGORITHM_FAST = 0x1;
@@ -337,6 +339,8 @@ bitflags! {
 
 bitflags! {
     pub struct VirtualAllocationCreateFlags: u32 {
+        const NONE = 0x0000_0000;
+
         /// Allocation will be created from upper stack in a double stack pool.
         ///
         /// This flag is only allowed for virtual blocks created with #VMA_VIRTUAL_BLOCK_CREATE_LINEAR_ALGORITHM_BIT flag.
@@ -363,6 +367,8 @@ bitflags! {
 
 bitflags! {
     pub struct VirtualBlockCreateFlags: u32 {
+        const NONE = 0x0000_0000;
+
         ///Enables alternative, linear allocation algorithm in this virtual block.
         ///
         ///Specify this flag to enable linear allocation algorithm, which always creates
@@ -2496,7 +2502,7 @@ impl VirtualBlock {
         alignment: T1,
         flags: T2,
         p_user_data: T3,
-    ) -> VkResult<VirtualAllocation>
+    ) -> VkResult<(VirtualAllocation, vk::DeviceSize)>
     where
         T1: Into<Option<vk::DeviceSize>>,
         T2: Into<Option<VirtualAllocationCreateFlags>>,
@@ -2524,7 +2530,7 @@ impl VirtualBlock {
             ))?
         };
 
-        Ok(vma_vallocation)
+        Ok((vma_vallocation, p_offset))
     }
 
     /// Frees virtual allocation inside given #VmaVirtualBlock.
