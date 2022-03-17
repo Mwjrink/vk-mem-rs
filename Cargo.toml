@@ -22,8 +22,7 @@ include = [
     "wrapper/vulkan/vulkan.h",
     "wrapper/vma_lib.cpp",
 ]
-# // TODO 2021
-edition = "2018"
+edition = "2021"
 
 # [badges]
 # travis-ci = { repository = "gwihlidal/vk-mem-rs" }

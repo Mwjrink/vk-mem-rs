@@ -1,4 +1,8 @@
-//! Easy to use, high performance memory manager for Vulkan.
+//! Easy to use, high performance memory manager for Vulkan. 
+
+/// TODO 
+/// See about using std::mem::MaybeUninit::uninit() instead of mem::zeroed()
+/// mod.rs tests do not compile
 
 use bitflags::bitflags;
 
@@ -1257,7 +1261,6 @@ impl Allocator {
             pVulkanFunctions: &routed_functions,
             pAllocationCallbacks: allocation_callbacks,
             pDeviceMemoryCallbacks: ::std::ptr::null(), // TODO: Add support
-            // pRecordSettings: ::std::ptr::null(),        // TODO: Add support
             vulkanApiVersion: create_info.vulkan_api_version,
             pTypeExternalMemoryHandleTypes: ::std::ptr::null(),
         };
