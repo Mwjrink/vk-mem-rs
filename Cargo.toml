@@ -1,6 +1,6 @@
 [package]
 name = "vk-mem"
-version = "1.3.206"
+version = "3.0.0"
 authors = ["Graham Wihlidal <graham@wihlidal.ca>", "Max Rink <mwjrink>"]
 description = "Rust ffi bindings and idiomatic wrapper for AMD Vulkan Memory Allocator (VMA)"
 homepage = "https://github.com/mwjrink/vk-mem-rs"

@@ -200,6 +200,10 @@ pub struct VmaVulkanFunctions {
     #[doc = " Fetch \"vkBindImageMemory2\" on Vulkan >= 1.1, fetch \"vkBindImageMemory2KHR\" when using VK_KHR_bind_memory2 extension."]
     pub vkBindImageMemory2KHR: PFN_vkBindImageMemory2,
     pub vkGetPhysicalDeviceMemoryProperties2KHR: PFN_vkGetPhysicalDeviceMemoryProperties2,
+    #[doc = " Fetch from \"vkGetDeviceBufferMemoryRequirements\" on Vulkan >= 1.3, but you can also fetch it from \"vkGetDeviceBufferMemoryRequirementsKHR\" if you enabled extension VK_KHR_maintenance4."]
+    pub vkGetDeviceBufferMemoryRequirements: PFN_vkGetDeviceBufferMemoryRequirements,
+    #[doc = " Fetch from \"vkGetDeviceImageMemoryRequirements\" on Vulkan >= 1.3, but you can also fetch it from \"vkGetDeviceImageMemoryRequirementsKHR\" if you enabled extension VK_KHR_maintenance4."]
+    pub vkGetDeviceImageMemoryRequirements: PFN_vkGetDeviceImageMemoryRequirements,
 }
 #[doc = " Description of a Allocator to be created."]
 #[repr(C)]
@@ -1161,7 +1165,7 @@ extern "C" {
     #[doc = "\\param allocator"]
     #[doc = "\\param allocationCount"]
     #[doc = "\\param allocations"]
-    #[doc = "\\param offsets If not null, it must point to an array of offsets of regions to flush, relative to the beginning of respective allocations. Null means all offsets are zero."]
+    #[doc = "\\param offsets If not null, it must point to an array of offsets of regions to flush, relative to the beginning of respective allocations. Null means all ofsets are zero."]
     #[doc = "\\param sizes If not null, it must point to an array of sizes of regions to flush in respective allocations. Null means `VK_WHOLE_SIZE` for all allocations."]
     #[doc = ""]
     #[doc = "This function returns the `VkResult` from `vkInvalidateMappedMemoryRanges` if it is"]

@@ -3,6 +3,7 @@
 /// TODO 
 /// See about using std::mem::MaybeUninit::uninit() instead of mem::zeroed()
 /// mod.rs tests do not compile
+// use ::empty() instead of None
 
 use bitflags::bitflags;
 
@@ -1246,6 +1247,8 @@ impl Allocator {
                 .get_physical_device_memory_properties2,
             vkGetInstanceProcAddr: entry.static_fn().get_instance_proc_addr,
             vkGetDeviceProcAddr: instance.fp_v1_0().get_device_proc_addr,
+            vkGetDeviceBufferMemoryRequirements: device.fp_v1_3().get_device_buffer_memory_requirements,
+            vkGetDeviceImageMemoryRequirements: device.fp_v1_3().get_device_image_memory_requirements,
         };
 
         let allocation_callbacks = match create_info.allocation_callbacks {
@@ -1858,7 +1861,7 @@ impl Allocator {
     /// allocator
     /// allocationCount
     /// allocations
-    /// offsets If not null, it must point to an array of offsets of regions to flush, relative to the beginning of respective allocations. Null means all ofsets are zero.
+    /// offsets If not null, it must point to an array of offsets of regions to flush, relative to the beginning of respective allocations. Null means all offsets are zero.
     /// sizes If not null, it must point to an array of sizes of regions to flush in respective allocations. Null means `VK_WHOLE_SIZE` for all allocations.
     ///
     /// This function returns the `VkResult` from `vkFlushMappedMemoryRanges` if it is
